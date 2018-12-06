@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import Question from './Question';
+import Score from '../Score';
 
 // stockWords: [
 //     'capital',
@@ -111,22 +112,12 @@ class QuestionContainer extends Component {
         console.log(randomSet);
         // based on the number of words in randomSet call the API and pass the word and return its homophone and definition and push them into the questionSet array by building an object for each question
 
-        // randomly chooses a definiton to display on screen, either def of word1 (originalword passed into api) or def of word2(homophone)
+        // randomly  chooses a button configuration for displaying the two words
+
         const getRandomPosition = () => {
             const randomPosition = Math.floor(Math.random() * 2);
             return randomPosition;
         };
-
-        // const getPosition = () => {
-        //     const word0Position = randomPosition();
-
-        //     if (word0Post == 0) {
-        //         word1Post = 1;
-        //     } else if (word0Post == 1) {
-        //         word1Post = 0;
-        //     }
-        //     return word0Post, word1Post;
-        // };
 
         const axiosArray = randomSet.map((word) => {
             return axios({
@@ -145,11 +136,7 @@ class QuestionContainer extends Component {
                     definition: result.data[0].defs[0],
                     answer: result.data[0].word,
                     wordPosition: getRandomPosition(),
-
-                    // words: result.data,
-                    // choosenDef: chooseDef(), // choose random 0 or 1
                 };
-                console.log();
             });
             this.setState({
                 questionSet: response,
@@ -165,17 +152,24 @@ class QuestionContainer extends Component {
         });
     };
 
+    updateScore = (score) => {
+        console.log('before update score', this.state.score);
+        this.setState((currentState) => {
+            return { score: currentState.score + score };
+        });
+        this.showNextQuestion();
+        console.log('new score', this.state.score);
+    };
+
     render() {
         return (
             <div>
-                <Question data={this.state.questionSet[this.state.index]} />
-                {this.state.index < 9 ? (
-                    <button onClick={this.showNextQuestion}>
-                        Next Question
-                    </button>
-                ) : (
-                    <button>Show results</button>
-                )}
+                <Score value={this.state.score} />
+                <Question
+                    data={this.state.questionSet[this.state.index]}
+                    updateScore={this.updateScore}
+                />
+                {this.state.index > 9 ? <button>Show results</button> : null}
             </div>
         );
     }

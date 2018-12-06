@@ -91,8 +91,9 @@ class QuestionContainer extends Component {
             const response = results.map((result) => {
                 console.log(result);
                 return {
-                    homophone: result.data[0].word,
+                    // homophone: result.data[0].word,
                     words: result.data,
+                    choosenDef: 0, // choose random 0 or 1
                 };
             });
             this.setState({

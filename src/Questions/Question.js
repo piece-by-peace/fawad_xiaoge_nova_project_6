@@ -5,6 +5,9 @@ const Question = ({ data }) => {
     if (data == null) {
         return null;
     }
+
+    // randomly pick defition 0 or 1
+
     return <div>{JSON.stringify(data)}</div>;
 };
 

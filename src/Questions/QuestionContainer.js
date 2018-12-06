@@ -82,25 +82,24 @@ class QuestionContainer extends Component {
         const axiosArray = randomSet.map((word) => {
             return axios({
                 method: 'GET',
-                url: `https://api.datamuse.com/words?rel_hom=${word}&md=d`,
+                url: `https://api.datamuse.com/words?sl=${word}&md=d&max=2`,
                 dataType: 'json',
             });
         });
 
-        axios.all(axiosArray).then(
-            axios.spread((...results) => {
-                const response = results.map((result) => {
-                    console.log(result);
-                    return {
-                        homophone: result.data[0].word,
-                    };
-                });
-                this.setState({
-                    questionSet: response,
-                });
-                console.log(this.state.questionSet);
-            })
-        );
+        axios.all(axiosArray).then((results) => {
+            const response = results.map((result) => {
+                console.log(result);
+                return {
+                    homophone: result.data[0].word,
+                    words: result.data,
+                };
+            });
+            this.setState({
+                questionSet: response,
+            });
+            console.log(this.state.questionSet);
+        });
 
         // for (let i = 0; i < randomSet.length; i++) {
         //    axios({

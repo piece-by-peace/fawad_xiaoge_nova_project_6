@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+import Question from './Question';
+
 // const stockWords = ['capital', 'hour', 'meet', 'storey', 'lute', 'phase', 'praise', 'pried', 'trussed', 'moat',
 //    'sealing', 'chili', 'straight', 'jell', 'jeans', 'idol', 'faint', 'yolk', 'troop', 'alter',
 //    'cokes', 'draft', 'reek', 'vain', 'vail', 'colonel', 'chords', 'rye', 'lichens', 'sack',
 //    'queue', 'coup', 'bail', 'peace', 'piers', 'pour', 'bridal', 'whether', 'creek', 'effect']
 
-class Questions extends Component {
+class QuestionContainer extends Component {
     constructor() {
         super();
         this.state = {
@@ -56,6 +58,7 @@ class Questions extends Component {
             score: 0,
             // Array of questions
             questionSet: [],
+            index: 0,
         };
     }
 
@@ -87,6 +90,7 @@ class Questions extends Component {
         axios.all(axiosArray).then(
             axios.spread((...results) => {
                 const response = results.map((result) => {
+                    console.log(result);
                     return {
                         homophone: result.data[0].word,
                     };
@@ -126,17 +130,21 @@ class Questions extends Component {
         // console.log(testArray);
     }
 
+    showNextQuestion = () => {
+        this.setState((currentState) => {
+            console.log(currentState.index + 1);
+            return { index: currentState.index + 1 };
+        });
+    };
+
     render() {
-        // console.log(this.state.questionSet)
         return (
             <div>
-                {this.state.questionSet.map((question) => {
-                    // console.log(question)
-                    return <p>{question.homophone}</p>;
-                })}
+                <Question data={this.state.questionSet[this.state.index]} />
+                <button onClick={this.showNextQuestion}>Next Question</button>
             </div>
         );
     }
 }
 
-export default Questions;
+export default QuestionContainer;

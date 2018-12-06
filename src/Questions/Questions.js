@@ -6,15 +6,12 @@ import axios from 'axios';
 //    'cokes', 'draft', 'reek', 'vain', 'vail', 'colonel', 'chords', 'rye', 'lichens', 'sack',
 //    'queue', 'coup', 'bail', 'peace', 'piers', 'pour', 'bridal', 'whether', 'creek', 'effect']
 
-   class Questions extends Component {
+class Questions extends Component {
    constructor() {
       super();
       this.state = {
          // words picked randomly from stockWords
-         stockWords : ['capital', 'mind', 'meet', 'storey', 'lute', 'phase', 'praise', 'pried', 'see', 'moat',
-            'sealing', 'chili', 'straight', 'jell', 'jeans', 'idol', 'faint', 'yolk', 'troop', 'alter',
-            'cokes', 'draft', 'reek', 'vain', 'vail', 'colonel', 'chords', 'rye', 'lichens', 'sack',
-            'there', 'coup', 'bail', 'peace', 'piers', 'pour', 'bridal', 'whether', 'creek', 'effect'],
+         stockWords: ['capital', 'mind', 'meet', 'storey', 'lute', 'phase', 'praise', 'pried', 'see', 'moat', 'sealing', 'chili', 'straight', 'jell', 'jeans', 'idol', 'faint', 'yolk', 'troop', 'alter', 'cokes', 'draft', 'reek', 'vain', 'vail', 'colonel', 'chords', 'rye', 'lichens', 'sack', 'their', 'coup', 'bail', 'peace', 'piers', 'pour', 'bridal', 'whether', 'creek', 'effect'],
          score: 0,
          // Array of questions
          questionSet: [],
@@ -37,72 +34,44 @@ import axios from 'axios';
       }
       console.log(randomSet)
       // based on the number of words in randomSet call the API and pass the word and return its homophone and definition and push them into the questionSet array by building an object for each question
-      let testArray = [];
-      const axiosArray =  randomSet.map((word)=>{
+      const axiosArray = randomSet.map((word) => {
          return axios({
             method: 'GET',
             url: `https://api.datamuse.com/words?rel_hom=${word}&md=d`,
             dataType: 'json',
          })
       })
-      
+
       axios.all(axiosArray)
          .then(axios.spread((...results) => {
-            const response = results.map((result)=>{
+            const response = results.map((result, i) => {
                return {
-                  homophone: result.data[0].word
+                  originalWord : randomSet[i],
+                  homophone: result.data[0].word,
+                  definition: result.data[0].defs[0]
                }
             })
             this.setState({
-               questionSet : response
+               questionSet: response
             })
             console.log(this.state.questionSet)
          }));
-
-      // for (let i = 0; i < randomSet.length; i++) {
-      //    axios({
-      //       method: 'GET',
-      //       url: `https://api.datamuse.com/words?rel_hom=${randomSet[i]}&md=d`,
-      //       dataType: 'json',
-      //    }).then((result) => {
-      //       console.log(result)
-
-      //          // console.log("Meets condition", result.data[0].word)
-      //          testArray.push(result
-      //             // {
-      //             //    originalWord: randomSet[i],
-      //             //    homophone: result.data[0].word,
-      //             //    answer: result.data[0].word
-      //             // }
-      //          )
-
-      //    });
-      // }
-      // console.log(testArray)
-      // this.setState({
-      //    questionSet : testArray
-      // },()=>{
-      //    // console.log(this.state.questionSet)
-      // })
-      // console.log(testArray);
    }
 
    render() {
-      // console.log(this.state.questionSet)
       return (
          <div>
             {
-               this.state.questionSet.map((question) => {
-                  // console.log(question)
+               this.state.questionSet.map((question,i) => {
                   return (
-                     <p>{question.homophone}</p>
+                     <p key={i}>{question.homophone}</p>
                   )
                })
             }
-         </div> 
+         </div>
       )
-      
-      
+
+
    }
 }
 

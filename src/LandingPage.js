@@ -1,24 +1,25 @@
 import React, { Component } from 'react';
-import TimerDifficulty from './TimerDiffculty';
 
-class LandingPage extends Component {
-    constructor() {
-        super();
-        this.state = {
-            timer: 0,
-        };
-    }
-    startGame = () => {};
-
-    render() {
-        return (
+const LandingPage = ({ handleOnClickButton }) => {
+    return (
+        <div>
+            <h1>Piece by peace</h1>
+            <h2>Choose difficulty</h2>
             <div>
-                <h1>Piece by peace</h1>
-                <TimerDifficulty />
-                <button onClick={this.startGame}>Start Game</button>
+                <button value="easy" onClick={handleOnClickButton}>
+                    easy
+                </button>
+
+                <button onClick={handleOnClickButton} value="medium">
+                    medium
+                </button>
+
+                <button onClick={handleOnClickButton} value="hard">
+                    hard
+                </button>
             </div>
-        );
-    }
-}
+        </div>
+    );
+};
 
 export default LandingPage;

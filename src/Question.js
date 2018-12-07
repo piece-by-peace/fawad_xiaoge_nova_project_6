@@ -16,9 +16,9 @@ const Question = ({ data, updateScore }) => {
         console.log('homophone', data.homophone);
 
         const userClick = e.target.value;
-        if (userClick == data.homophone) {
+        if (userClick === data.homophone) {
             updateScore(100);
-        } else if (userClick == data.originalWord) {
+        } else if (userClick === data.originalWord) {
             updateScore(0);
         }
     };
@@ -26,7 +26,7 @@ const Question = ({ data, updateScore }) => {
     return (
         <div>
             <p>{data.definition}</p>
-            {data.wordPosition == 0 ? (
+            {data.wordPosition === 0 ? (
                 <div>
                     <button onClick={checkAnswer} value={data.originalWord}>
                         {data.originalWord}

@@ -126,10 +126,48 @@ class App extends Component {
         console.log('new score', this.state.score);
     };
 
+    startTimer = (totalGameTime) => {
+        console.log('State timer', this.state.timer);
+        // timer = this.state.timer;
+        document.getElementById('timer').innerHTML = this.state.timer;
+        totalGameTime--;
+        if (totalGameTime < 0) {
+            alert('You lose!');
+        } else {
+            setTimeout(this.startTimer, 1000);
+        }
+    };
+
+    //  startTimer = (duration, display) => {
+    //     var timer = duration, minutes, seconds;
+    //     setInterval = () => {
+    //         minutes = parseInt(timer / 60, 10)
+    //         seconds = parseInt(timer % 60, 10);
+
+    //         minutes = minutes < 10 ? "0" + minutes : minutes;
+    //         seconds = seconds < 10 ? "0" + seconds : seconds;
+
+    //         display.textContent = minutes + ":" + seconds;
+
+    //         if (--timer < 0) {
+    //             timer = duration;
+    //         }
+    //     }, 1000;
+    // }
+
+    // window.onload =  () =>  {
+    //     var fiveMinutes = 60 * 0.5,
+    //         display = document.querySelector('#timer');
+    //     startTimer(fiveMinutes, display);
+    // };
+
     timerLevelStartGame = (e) => {
+        e.preventDefault();
         const userDifficulty = e.target.value;
         console.log(userDifficulty);
+
         let totalGameTime = 0;
+
         if (userDifficulty === 'easy') {
             totalGameTime = 60;
         } else if (userDifficulty === 'medium') {
@@ -139,20 +177,28 @@ class App extends Component {
         }
 
         this.setState({
-            timer: totalGameTime,
+            timer: 20,
         });
-        this.startTimer(this.state.timer);
-    };
 
-    startTimer = (timer) => {
-        timer = this.state.timer;
-        document.getElementById('timer').innerHTML = this.state.timer;
-        this.state.timer--;
-        if (this.state.timer < 0) {
-            alert('You lose!');
-        } else {
-            setTimeout(this.startTimer, 1000);
-        }
+        // console.log(
+        //     'before setting the state to totalGameTime',
+        //     this.state.timer
+        // );
+        // console.log('total game time', totalGameTime);
+
+        // this.setState((currentState) => {
+        //     return { timer: 20 };
+        // });
+        console.log('Timer in Timer', this.state.timer);
+
+        // console.log('state of time after setting state', this.state.timer);
+        // console.log('this is the totalGame time', totalGameTime);
+        // console.log(
+        //     'this is the data type of totalGameTime',
+        //     typeof totalGameTime
+        // );
+
+        this.startTimer(this.state.timer);
     };
 
     render() {

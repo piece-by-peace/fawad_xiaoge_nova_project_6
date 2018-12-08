@@ -4,7 +4,7 @@ const Header = ({ score, timer }) => {
     return (
         <header>
             <div>Score: {score}</div>
-            <div id="timer">Timer: {timer}</div>
+            <div>Timer: <span id="timer">{timer}</span></div>
         </header>
     );
 };

@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import { leaderboardDbRef } from '../firebase';
 
 class Leaderboard extends Component {
-
     constructor() {
         super();
         this.state = {
-            leaderboard: {}
+            leaderboard: []
         };
     }
 
@@ -15,13 +14,13 @@ class Leaderboard extends Component {
         leaderboardDbRef
             .orderByChild('score')
             .limitToLast(10)
-            .once('value', (snapshot) => {
-                const leaderboard = snapshot.val();
+            .on('value', (snapshot) => {
+                let leaderboard = [];
+                snapshot.forEach((child) => {
+                    leaderboard.unshift(child.val());
+                });
 
-                console.log(leaderboard);
-                if (leaderboard != null) {
-                    this.setState({ leaderboard: leaderboard });
-                }
+                this.setState({ leaderboard: leaderboard });
             });
     }
 
@@ -30,12 +29,11 @@ class Leaderboard extends Component {
         return (
         <div>
             <h2> Leaderboard </h2>
-            { Object.entries(this.state.leaderboard)
-                .sort((a, b) => b[1].score - a[1].score)
-                .map(([key, leader]) => {
+            { this.state.leaderboard
+                .map((entry, index) => {
                     return (
-                        <div key={leader.key}>
-                            {leader.score} - {leader.name}
+                        <div key={entry.key}>
+                            {index+1}. {entry.name} - {entry.score}
                         </div>
                     );
                 })

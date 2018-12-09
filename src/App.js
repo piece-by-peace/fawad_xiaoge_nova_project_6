@@ -20,10 +20,15 @@ class App extends Component {
             index: 0,
             userDifficulty: '',
             currentGameTime: 0,
+            userName: '',
         };
     }
 
     componentDidMount() {
+        this.generateWordSet();
+    }
+
+    generateWordSet = () => {
         // build the randomSet array by choosing words randomly from stockWords without repeating
         // Fisher-Yates algorithm to create random array
         let stockWords = Array.from(this.state.stockWords);
@@ -55,7 +60,7 @@ class App extends Component {
             });
         });
 
-        axios.all(axiosArray).then((results) => {
+        return axios.all(axiosArray).then((results) => {
             const response = results.map((result, i) => {
                 // console.log(result);
                 return {
@@ -70,19 +75,9 @@ class App extends Component {
                 questionSet: response,
             });
         });
-    }
+    };
 
     counter = null;
-
-    showNextQuestion = () => {
-        if (this.state.index >= 9) {
-            this.endGame();
-        }
-
-        this.setState((currentState) => {
-            return { index: currentState.index + 1 };
-        });
-    };
 
     updateScore = (score) => {
         console.log('before update score', this.state.score);
@@ -92,6 +87,16 @@ class App extends Component {
         });
         this.showNextQuestion();
         console.log('new score', this.state.score);
+    };
+
+    showNextQuestion = () => {
+        if (this.state.index >= 9) {
+            this.endGame();
+        }
+
+        this.setState((currentState) => {
+            return { index: currentState.index + 1 };
+        });
     };
 
     timerLevelStartGame = (e) => {
@@ -136,15 +141,25 @@ class App extends Component {
 
     endGame = () => {
         clearInterval(this.counter);
+        this.setState({ currentGameTime: 0 });
+    };
+
+    handleUserNameInput = (e) => {
+        this.setState({ userName: e.target.value });
+    };
+
+    handleSubmitScore = (e) => {
+        e.preventDefault();
 
         // Add their score to the db
-        // TODO: collect their name first
         leaderboardDbRef.push().set({
-            name: 'Anonymous',
+            name: this.state.userName || 'Anonymous',
             score: this.state.score,
+        })
+        .then(() => {
+            this.setState({ userDifficulty: '', index: 0, score: 0 });
+            this.generateWordSet();
         });
-
-        this.setState({ currentGameTime: 0 });
     };
 
     render() {
@@ -162,7 +177,17 @@ class App extends Component {
                         updateScore={this.updateScore}
                     />
                 )}
-                {this.state.index > 9 ? <button>Show results</button> : null}
+                
+                {this.state.index > 9 ?
+                    (<div>
+                        <button>Show results</button> 
+                        <span> Enter your name </span>
+                        <input type="text" value={this.state.userName} onChange={this.handleUserNameInput} required/>
+                        <button onClick={this.handleSubmitScore}>Submit Score</button>
+                    </div>)
+                    
+                    : null
+                }
             </div>
         );
     }

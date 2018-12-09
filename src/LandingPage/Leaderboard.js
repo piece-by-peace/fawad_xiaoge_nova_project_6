@@ -5,7 +5,8 @@ class Leaderboard extends Component {
     constructor() {
         super();
         this.state = {
-            leaderboard: []
+            leaderboard: [],
+            leaderboardShown: false,
         };
     }
 
@@ -24,29 +25,39 @@ class Leaderboard extends Component {
             });
     }
 
+    toggleLeaderboard = () => {
+        this.setState((currentState) => {
+            return { leaderboardShown: !currentState.leaderboardShown };
+        });
+    };
+
     render() {
+        const leaderboardContent = (showContent) => {
+            if (showContent) {
+                return (
+                    <div>
+                        <h2> Leaderboard </h2>
+                        {this.state.leaderboard.map((entry, index) => {
+                            return (
+                                <div key={entry.key}>
+                                    {index + 1}. {entry.name} - {entry.score}
+                                </div>
+                            );
+                        })}
+                    </div>
+                );
+            } else {
+                return null;
+            }
+        };
+
         return (
-
-            <div class="modal">
-                <div class="modal-container">
-                    <div class="modal-header">
-                        <h2>Leaderboard</h2>
-                        <i id="landing-btn-close" class="fas fa-times modal-close"></i>
-                    </div>
-                    <div class="modal-main">
-                        {this.state.leaderboard
-                            .map((entry, index) => {
-                                return (
-                                    <div key={entry.key}>
-                                        {index + 1}. {entry.name} - {entry.score}
-                                    </div>
-                                );
-                            })
-                        }
-                    </div>
-                </div>
+            <div>
+                <button onClick={this.toggleLeaderboard}>
+                    Show leaderboard
+                </button>
+                {leaderboardContent(this.state.leaderboardShown)}
             </div>
-
         );
     }
 }

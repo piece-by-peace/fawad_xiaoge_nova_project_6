@@ -21,7 +21,6 @@ const LandingPage = ({ handleOnClickButton }) => {
                     hard
                 </button>
             </div>
-            <button onClick={showLeaderboard} value="leaderboard">Leaderboard</button>
             <Leaderboard />
         </div>
     );

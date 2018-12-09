@@ -1,64 +1,24 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import Question from './Question';
+import Question from './Questions/Question';
 import Header from './Header';
 import LandingPage from './LandingPage';
+import stockWords from './data';
 
-let totalGameTime = 0;
-let counter = 0;
+
 class App extends Component {
     constructor() {
         super();
         this.state = {
             // words picked randomly from stockWords
-            stockWords: [
-                'capital',
-                'mind',
-                'meet',
-                'storey',
-                'lute',
-                'phase',
-                'praise',
-                'pried',
-                'see',
-                'moat',
-                'sealing',
-                'chili',
-                'straight',
-                'jell',
-                'jeans',
-                'idol',
-                'faint',
-                'yolk',
-                'troop',
-                'alter',
-                'cokes',
-                'draft',
-                'reek',
-                'vain',
-                'vail',
-                'colonel',
-                'chords',
-                'rye',
-                'lichens',
-                'sack',
-                'their',
-                'coup',
-                'bail',
-                'peace',
-                'piers',
-                'pour',
-                'bridal',
-                'whether',
-                'creek',
-                'effect',
-            ],
+            stockWords: stockWords,
             score: 0,
             // Array of questions
             questionSet: [],
             index: 0,
             userDifficulty: '',
+            currentGameTime: 0,
         };
     }
 
@@ -109,10 +69,15 @@ class App extends Component {
                 questionSet: response,
             });
         });
-        console.log();
     }
 
+    counter = null;
+
     showNextQuestion = () => {
+        if (this.state.index >= 9) {
+            this.endGame();
+        }
+
         this.setState((currentState) => {
             console.log(currentState.index + 1);
             return { index: currentState.index + 1 };
@@ -121,6 +86,7 @@ class App extends Component {
 
     updateScore = (score) => {
         console.log('before update score', this.state.score);
+
         this.setState((currentState) => {
             return { score: currentState.score + score };
         });
@@ -132,72 +98,51 @@ class App extends Component {
         e.preventDefault();
 
         const userDifficulty = e.target.value;
+        let selectedGameTime = 0;
 
-        this.setState({
-            userDifficulty: userDifficulty,
-        });
-        console.log(userDifficulty);
         switch (userDifficulty) {
             case 'easy':
-                totalGameTime = 60;
+                selectedGameTime = 60;
                 break;
             case 'medium':
-                totalGameTime = 45;
+                selectedGameTime = 45;
                 break;
             case 'hard':
-                totalGameTime = 30;
+                selectedGameTime = 30;
                 break;
             default:
                 alert('How did you manage to break the difficulty setting...');
                 break;
         }
 
-        this.displayTime();
+        this.setState({ 
+            currentGameTime: selectedGameTime,
+            userDifficulty: userDifficulty, 
+        });
+
+        console.log(userDifficulty);
         // Set the timer to a variable so that clearInterval() can be called when the time runs out or if the user exits the game.
-        counter = setInterval(this.timer1, 1000);
+        this.counter = setInterval(this.updateGameTime, 1000);
     };
 
-    displayTime = () => {
-        let strTime;
-
-        if (totalGameTime >= 45) {
-            if (totalGameTime % 60 < 10) {
-                strTime = `${Math.floor(totalGameTime / 60)}:0${totalGameTime %
-                    60}`;
-            } else {
-                strTime = `${Math.floor(totalGameTime / 60)}:${totalGameTime %
-                    60}`;
-            }
-        } else if (totalGameTime < 10) {
-            strTime = `0:0${totalGameTime}`;
-        } else {
-            strTime = `0:${totalGameTime}`;
-        }
-        let timer = document.getElementById('timer');
-        timer.innerHTML = 0;
-        timer.innerHTML = strTime;
-
-        // For debugging purposes
-        console.log(totalGameTime);
-    };
-
-    timer1 = () => {
-        if (totalGameTime <= 0) {
+    updateGameTime = () => {
+        const currentGameTime = this.state.currentGameTime;
+        if (currentGameTime <= 0) {
             this.endGame();
         } else {
-            totalGameTime--;
+            this.setState({ currentGameTime: currentGameTime - 1 });
         }
-        this.displayTime();
     };
 
     endGame = () => {
-        clearInterval(counter);
+        clearInterval(this.counter);
+        this.setState({ currentGameTime: 0 });
     };
 
     render() {
         return (
             <div>
-                <Header score={this.state.score} timer={totalGameTime} />
+                <Header score={this.state.score} currentTime={this.state.currentGameTime} />
 
                 {this.state.userDifficulty === '' ? (
                     <LandingPage

@@ -57,3 +57,34 @@ h2{
   color: $primary-color;
   font-size: $medium-font-size;
 }
+
+.modal{
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9;
+  padding: 2rem;
+}
+
+.modal-container{
+  background: white;
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.btn-leaderboard{
+  z-index: 10;
+}
+
+.input-field{
+  display: block;
+  width: 100%;
+}
+
+.input-wrapper{
+    padding: 0 20%;
+    margin: 5rem 0;
+}

@@ -36,8 +36,7 @@ button {
     background-size: $stripe-height $stripe-height;
   }
 
-  &:hover, &:focus {
-    outline: none;
+  &:hover{
     background-color: $accent-color;
     color: $quaterary-color;
     border-color: $tertiary-color;
@@ -53,6 +52,10 @@ button {
       border-top: 1px solid $tertiary-color;
       animation: stripe-slide 5s infinite linear forwards;
     }
+  }
+
+  &:focus {
+    outline: none;
   }
 
   &:active {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-
+import './App.scss'
 import Question from './Questions/Question';
 import Header from './Questions/Header';
 import LandingPage from './LandingPage/LandingPage';
@@ -164,7 +164,7 @@ class App extends Component {
 
     render() {
         return (
-            <div>
+            <div className="wrapper">
                 <Header score={this.state.score} currentTime={this.state.currentGameTime} />
 
                 {this.state.userDifficulty === '' ? (

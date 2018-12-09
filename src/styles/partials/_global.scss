@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Crimson+Text:400,400i,600,600i");
+@import url("https://fonts.googleapis.com/css?family=Lora:400,700|Open+Sans");
+
 
 html{
   font-size: 62.5%;
@@ -8,7 +10,7 @@ body{
   font-size: 1.6rem;
   text-align: center;
   font-family: 'Crimson Text', serif;
-  background-color: $background;
+  background-color: $background-color;
 }
 
 header{
@@ -19,28 +21,39 @@ header{
 }
 
 h1{
+  font-family: $heading-font-family;
   font-size: 5rem;
   font-weight: bold;
   font-style: normal;
+  color: $primary-color;
   span{
     font-size: 3.5rem;
     display: block;
     line-height: 0.7;
     font-style: italic;
+    margin: 1rem 0;
   }
 }
 
 h2{
   font-size: 3rem;
+  color: darken($secondary-color, 15);
 }
 
 .wrapper{
+   max-width: 1600px;
    width: 80%;
    margin: 0 auto;
-   color: grey;
+   color: $secondary-color;
 };
 
 .question p {
   width: 80%;
   margin: 20px auto;
+}
+
+.app-header{
+  margin-top: 2rem;
+  color: $primary-color;
+  font-size: $medium-font-size;
 }

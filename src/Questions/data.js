@@ -15,7 +15,7 @@ export const stockWords = [
     'straight',
     'jell',
     'jeans',
-    'idol',
+    'flair',
     'faint',
     'yolk',
     'troop',

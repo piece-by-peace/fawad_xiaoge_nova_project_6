@@ -165,8 +165,8 @@ class App extends Component {
     render() {
         return (
             <div className="wrapper">
-                <Header score={this.state.score} currentTime={this.state.currentGameTime} />
 
+                <Header score={this.state.score} currentTime={this.state.currentGameTime} />
                 {this.state.userDifficulty === '' ? (
                     <LandingPage
                         handleOnClickButton={this.timerLevelStartGame}

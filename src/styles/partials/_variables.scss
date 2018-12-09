@@ -1,10 +1,16 @@
-$color-gray:grey;
-$color-black: black;
+$primary-color: #454747;
+$secondary-color: #bfc0c1; // not using right now
+$tertiary-color: #000000;
+$quaterary-color: #ffffff;
+$accent-color: #3ea2a6;
+$background-color: #f5f5f5;
+
+$heading-font-family: ‘Lora’, serif;
+$body-font-family: ‘Oxygen’, sans-serif;
+
+$small-font-size: 1.8rem;
+$medium-font-size: 2.2rem;
+$large-font-size: 3.2rem;
+$xlarge-font-size: 8rem;
+
 $stripe-height: 7px;
-$background: whitesmoke;
-$btn-color: $color-gray;
-$btn-background: white;
-$btn-color-hover: white;
-$btn-background-hover: $color-gray;
-$border-color: $color-gray;
-$border-color-hover: $color-black;

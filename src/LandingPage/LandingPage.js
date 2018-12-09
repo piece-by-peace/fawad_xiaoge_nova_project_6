@@ -6,7 +6,7 @@ const LandingPage = ({ handleOnClickButton }) => {
 
     return (
         <div className="landing_page">
-            <h1>Piece by peace</h1>
+            <h1>Piece <span>by</span> Peace</h1>
             <h2>Choose difficulty</h2>
             <div>
                 <button value="easy" onClick={handleOnClickButton}>

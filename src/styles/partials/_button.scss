@@ -5,10 +5,10 @@ button {
   text-transform: capitalize;
   font-weight: bold;
   padding: 10px 20px 15px 20px;
-  margin: 0 15px;
-  background-color: $btn-background;
-  color: $btn-color;
-  border: 2px solid $border-color;
+  margin: 15px;
+  background-color: $quaterary-color;
+  color: $primary-color;
+  border: 2px solid $primary-color;
   transition: all .3s ease;
   overflow: hidden;
   position: relative;
@@ -24,43 +24,44 @@ button {
     width: 100%;
     background-image: repeating-linear-gradient(
         45deg,
-        $border-color,
-        $border-color 1px,
+        $primary-color,
+        $primary-color 1px,
         transparent 2px,
         transparent 5px
     );
-    border-top: 1px solid $border-color;
+    border-top: 1px solid $primary-color;
     position: absolute;
     left: 0;
     bottom: 0;
     background-size: $stripe-height $stripe-height;
   }
 
-  &:hover {
-    background-color: $btn-background-hover;
-    color: $btn-color-hover;
-    border-color: $border-color-hover;
+  &:hover, &:focus {
+    outline: none;
+    background-color: $accent-color;
+    color: $quaterary-color;
+    border-color: $tertiary-color;
 
     &:after {
       background-image: repeating-linear-gradient(
         45deg,
-        $btn-color-hover,
-        $btn-color-hover 1px,
+        $quaterary-color,
+        $quaterary-color 1px,
         transparent 2px,
         transparent 5px
       );
-      border-top: 1px solid $border-color-hover;
+      border-top: 1px solid $tertiary-color;
       animation: stripe-slide 5s infinite linear forwards;
     }
   }
 
   &:active {
     &:after{
-      background-color: $background;
+      background-color: $background-color;
       left: -3%;
       width: 106%;
       background-image: none;
-      border-top: 2px solid $border-color-hover;
+      border-top: 2px solid $tertiary-color;
       z-index: 1;
       }
     &:before{
@@ -70,7 +71,7 @@ button {
       position: absolute;
       bottom: 20%;
       left: 0;
-      outline: 2px solid $background;
+      outline: 2px solid $background-color;
       outline-offset: 2px;
       z-index: 2;
     }

@@ -24,21 +24,29 @@ class Leaderboard extends Component {
             });
     }
 
-
     render() {
         return (
-        <div>
-            <h2> Leaderboard </h2>
-            { this.state.leaderboard
-                .map((entry, index) => {
-                    return (
-                        <div key={entry.key}>
-                            {index+1}. {entry.name} - {entry.score}
-                        </div>
-                    );
-                })
-            }
-        </div>
+
+            <div class="modal">
+                <div class="modal-container">
+                    <div class="modal-header">
+                        <h2>Leaderboard</h2>
+                        <i id="landing-btn-close" class="fas fa-times modal-close"></i>
+                    </div>
+                    <div class="modal-main">
+                        {this.state.leaderboard
+                            .map((entry, index) => {
+                                return (
+                                    <div key={entry.key}>
+                                        {index + 1}. {entry.name} - {entry.score}
+                                    </div>
+                                );
+                            })
+                        }
+                    </div>
+                </div>
+            </div>
+
         );
     }
 }

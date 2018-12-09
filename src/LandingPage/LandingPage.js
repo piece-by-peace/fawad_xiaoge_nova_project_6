@@ -3,6 +3,7 @@ import React from 'react';
 import Leaderboard from './Leaderboard';
 
 const LandingPage = ({ handleOnClickButton }) => {
+
     return (
         <div>
             <h1>Piece by peace</h1>
@@ -20,7 +21,8 @@ const LandingPage = ({ handleOnClickButton }) => {
                     hard
                 </button>
             </div>
-            <Leaderboard></Leaderboard>
+            <button onClick={showLeaderboard} value="leaderboard">Leaderboard</button>
+            <Leaderboard />
         </div>
     );
 };

@@ -5,7 +5,7 @@ import Leaderboard from './Leaderboard';
 const LandingPage = ({ handleOnClickButton }) => {
 
     return (
-        <div>
+        <div className="landing_page">
             <h1>Piece by peace</h1>
             <h2>Choose difficulty</h2>
             <div>

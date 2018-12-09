@@ -1,8 +1,46 @@
-html {
-    font-size: 62.5%;
+@import url("https://fonts.googleapis.com/css?family=Crimson+Text:400,400i,600,600i");
+
+html{
+  font-size: 62.5%;
 }
 
-body {
-    font-family: $body-font-family;
-    font-size: $medium-font-size;
+body{
+  font-size: 1.6rem;
+  text-align: center;
+  font-family: 'Crimson Text', serif;
+  background-color: $background;
+}
+
+header{
+  width: 50%;
+  margin: 0 auto;
+  div:nth-child(1){float: left;} 
+  div:nth-child(2){float: right;} 
+}
+
+h1{
+  font-size: 5rem;
+  font-weight: bold;
+  font-style: normal;
+  span{
+    font-size: 3.5rem;
+    display: block;
+    line-height: 0.7;
+    font-style: italic;
+  }
+}
+
+h2{
+  font-size: 3rem;
+}
+
+.wrapper{
+   width: 80%;
+   margin: 0 auto;
+   color: grey;
+};
+
+.question p {
+  width: 80%;
+  margin: 20px auto;
 }

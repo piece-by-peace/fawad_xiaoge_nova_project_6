@@ -10,7 +10,7 @@ const Header = ({ score, currentTime }) => {
     };
 
     return (
-        <header>
+        <header className="clearfix">
             <div>Score: {score}</div>
             <div>Timer: <span id="timer">{formatTimeString(currentTime)}</span></div>
         </header>

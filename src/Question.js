@@ -23,9 +23,22 @@ const Question = ({ data, updateScore }) => {
         }
     };
 
+const Answer = (e) => {
+    if (e.charAt(0) === "n"){
+        let res = e.replace(/n/, "Noun:");
+        return res
+    } else if (e.charAt(0) === "v"){
+        let res = e.replace(/v/, "Verb:");
+        return res;
+    } else {
+        let res = e.replace(/adj/, "Adjvective:");
+        return res;
+    }
+}
+
     return (
         <div className="question">
-            <p>{data.definition}</p>
+            <p>{Answer(data.definition)}</p>
             {data.wordPosition === 0 ? (
                 <div>
                     <button onClick={checkAnswer} value={data.originalWord}>

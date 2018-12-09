@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Leaderboard from './Leaderboard';
+
 const LandingPage = ({ handleOnClickButton }) => {
     return (
         <div>
@@ -18,6 +20,7 @@ const LandingPage = ({ handleOnClickButton }) => {
                     hard
                 </button>
             </div>
+            <Leaderboard></Leaderboard>
         </div>
     );
 };

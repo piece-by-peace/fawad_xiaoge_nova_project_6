@@ -1,0 +1,16 @@
+@mixin landing-button {
+    overflow : visible;
+    margin : 0;
+    padding : 0;
+    border : 0;
+    background : transparent;
+    font : inherit;
+    line-height : normal;
+    cursor : pointer;
+    -moz-user-select : text;
+    
+    &:-moz-focus-inner {
+        padding : 0;
+        border : 0;
+    }
+}

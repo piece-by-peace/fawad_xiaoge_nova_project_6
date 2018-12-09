@@ -1,0 +1,77 @@
+@import url("https://fonts.googleapis.com/css?family=Noto+Serif+SC:400,700");
+
+.wrapper{
+   text-align: center;
+   font-family: 'Noto Serif SC', serif;
+};
+
+@keyframes stripe-slide {
+    0% { background-position: 0% 0; }
+    100% { background-position: 100% 0; }
+}
+
+.landing-page button {
+    @include landing-button;
+    display: block;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 16px 36px 22px;
+    background-color: $btn-background;
+    color: $btn-color;
+    border: 2px solid $border-color;
+    border-radius: 6px;
+    margin-bottom: 16px;
+    transition: all .5s ease;
+    
+    &--stripe {
+        overflow: hidden;
+        position: relative;
+        
+        &:after {
+            content: '';
+            display: block;
+            height: $stripe-height;
+            width: 100%;
+            background-image: repeating-linear-gradient(
+                45deg,
+                $border-color,
+                $border-color 1px,
+                transparent 2px,
+                transparent 5px
+            );
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-top: 1px solid $border-color;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            background-size: $stripe-height $stripe-height;
+        }
+
+        &:hover {
+            background-color: $btn-background-hover;
+            color: $btn-color-hover;
+            border-color: $border-color-hover;
+
+            &:after {
+                background-image: repeating-linear-gradient(
+                    45deg,
+                    $btn-color-hover,
+                    $btn-color-hover 1px,
+                    transparent 2px,
+                    transparent 5px
+                );
+                border-top: 1px solid $border-color-hover;
+                animation: stripe-slide 12s infinite linear forwards;
+            }
+        }
+    }
+    
+    &--large {
+        width: 50%;
+    }
+    
+    &--radius {
+        border-radius: 36px;
+    }
+}

@@ -8,17 +8,30 @@ body{
   font-size: 1.6rem;
   text-align: center;
   font-family: 'Crimson Text', serif;
+  background-color: $background;
 }
 
 header{
   width: 50%;
   margin: 0 auto;
-  div:nth-child(1){
-    float: left;
-  } 
-  div:nth-child(2){
-    float: right;
-  } 
+  div:nth-child(1){float: left;} 
+  div:nth-child(2){float: right;} 
+}
+
+h1{
+  font-size: 5rem;
+  font-weight: bold;
+  font-style: normal;
+  span{
+    font-size: 3.5rem;
+    display: block;
+    line-height: 0.7;
+    font-style: italic;
+  }
+}
+
+h2{
+  font-size: 3rem;
 }
 
 .wrapper{

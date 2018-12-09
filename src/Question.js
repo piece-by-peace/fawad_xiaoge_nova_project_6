@@ -30,7 +30,7 @@ const Answer = (e) => {
     } else if (e.charAt(0) === "v"){
         let res = e.replace(/v/, "Verb:");
         return res;
-    } else {
+    } else if (e.charAt(0) === "a"){
         let res = e.replace(/adj/, "Adjvective:");
         return res;
     }

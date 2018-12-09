@@ -20,7 +20,7 @@ const LandingPage = ({ handleOnClickButton }) => {
                     hard
                 </button>
             </div>
-            <Leaderboard></Leaderboard>
+            <Leaderboard />
         </div>
     );
 };

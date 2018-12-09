@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import Question from './Questions/Question';
-import Header from './Header';
-import LandingPage from './LandingPage';
-import stockWords from './data';
+import Header from './Questions/Header';
+import LandingPage from './LandingPage/LandingPage';
+import stockWords from './Questions/data';
 
+import { leaderboardDbRef } from './firebase';
 
 class App extends Component {
     constructor() {
@@ -79,7 +80,6 @@ class App extends Component {
         }
 
         this.setState((currentState) => {
-            console.log(currentState.index + 1);
             return { index: currentState.index + 1 };
         });
     };
@@ -136,6 +136,14 @@ class App extends Component {
 
     endGame = () => {
         clearInterval(this.counter);
+
+        // Add their score to the db
+        // TODO: collect their name first
+        leaderboardDbRef.push().set({
+            name: 'Anonymous',
+            score: this.state.score,
+        });
+
         this.setState({ currentGameTime: 0 });
     };
 

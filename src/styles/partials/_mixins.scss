@@ -6,11 +6,4 @@
     background : transparent;
     font : inherit;
     line-height : normal;
-    cursor : pointer;
-    -moz-user-select : text;
-    
-    &:-moz-focus-inner {
-        padding : 0;
-        border : 0;
-    }
 }

@@ -1,66 +1,34 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import './App.scss'
+import Question from './Questions/Question';
+import Header from './Questions/Header';
+import LandingPage from './LandingPage/LandingPage';
+import stockWords from './Questions/data';
 
-import Question from './Question';
-import Header from './Header';
-import LandingPage from './LandingPage';
+import { leaderboardDbRef } from './firebase';
 
 class App extends Component {
     constructor() {
         super();
         this.state = {
             // words picked randomly from stockWords
-            stockWords: [
-                'capital',
-                'mind',
-                'meet',
-                'storey',
-                'lute',
-                'phase',
-                'praise',
-                'pried',
-                'see',
-                'moat',
-                'sealing',
-                'chili',
-                'straight',
-                'jell',
-                'jeans',
-                'idol',
-                'faint',
-                'yolk',
-                'troop',
-                'alter',
-                'cokes',
-                'draft',
-                'reek',
-                'vain',
-                'vail',
-                'colonel',
-                'chords',
-                'rye',
-                'lichens',
-                'sack',
-                'their',
-                'coup',
-                'bail',
-                'peace',
-                'piers',
-                'pour',
-                'bridal',
-                'whether',
-                'creek',
-                'effect',
-            ],
+            stockWords: stockWords,
             score: 0,
-            timer: 0,
             // Array of questions
             questionSet: [],
             index: 0,
+            userDifficulty: '',
+            currentGameTime: 0,
+            userName: '',
         };
     }
 
     componentDidMount() {
+        this.generateWordSet();
+    }
+
+    generateWordSet = () => {
         // build the randomSet array by choosing words randomly from stockWords without repeating
         // Fisher-Yates algorithm to create random array
         let stockWords = Array.from(this.state.stockWords);
@@ -92,7 +60,7 @@ class App extends Component {
             });
         });
 
-        axios.all(axiosArray).then((results) => {
+        return axios.all(axiosArray).then((results) => {
             const response = results.map((result, i) => {
                 // console.log(result);
                 return {
@@ -107,18 +75,13 @@ class App extends Component {
                 questionSet: response,
             });
         });
-        console.log();
-    }
-
-    showNextQuestion = () => {
-        this.setState((currentState) => {
-            console.log(currentState.index + 1);
-            return { index: currentState.index + 1 };
-        });
     };
+
+    counter = null;
 
     updateScore = (score) => {
         console.log('before update score', this.state.score);
+
         this.setState((currentState) => {
             return { score: currentState.score + score };
         });
@@ -126,91 +89,105 @@ class App extends Component {
         console.log('new score', this.state.score);
     };
 
-    startTimer = (totalGameTime) => {
-        console.log('State timer', this.state.timer);
-        // timer = this.state.timer;
-        document.getElementById('timer').innerHTML = this.state.timer;
-        totalGameTime--;
-        if (totalGameTime < 0) {
-            alert('You lose!');
-        } else {
-            setTimeout(this.startTimer, 1000);
+    showNextQuestion = () => {
+        if (this.state.index >= 9) {
+            this.endGame();
         }
+
+        this.setState((currentState) => {
+            return { index: currentState.index + 1 };
+        });
     };
-
-    //  startTimer = (duration, display) => {
-    //     var timer = duration, minutes, seconds;
-    //     setInterval = () => {
-    //         minutes = parseInt(timer / 60, 10)
-    //         seconds = parseInt(timer % 60, 10);
-
-    //         minutes = minutes < 10 ? "0" + minutes : minutes;
-    //         seconds = seconds < 10 ? "0" + seconds : seconds;
-
-    //         display.textContent = minutes + ":" + seconds;
-
-    //         if (--timer < 0) {
-    //             timer = duration;
-    //         }
-    //     }, 1000;
-    // }
-
-    // window.onload =  () =>  {
-    //     var fiveMinutes = 60 * 0.5,
-    //         display = document.querySelector('#timer');
-    //     startTimer(fiveMinutes, display);
-    // };
 
     timerLevelStartGame = (e) => {
         e.preventDefault();
+
         const userDifficulty = e.target.value;
-        console.log(userDifficulty);
+        let selectedGameTime = 0;
 
-        let totalGameTime = 0;
-
-        if (userDifficulty === 'easy') {
-            totalGameTime = 60;
-        } else if (userDifficulty === 'medium') {
-            totalGameTime = 45;
-        } else {
-            totalGameTime = 30;
+        switch (userDifficulty) {
+            case 'easy':
+                selectedGameTime = 60;
+                break;
+            case 'medium':
+                selectedGameTime = 45;
+                break;
+            case 'hard':
+                selectedGameTime = 30;
+                break;
+            default:
+                alert('How did you manage to break the difficulty setting...');
+                break;
         }
 
-        this.setState({
-            timer: 20,
+        this.setState({ 
+            currentGameTime: selectedGameTime,
+            userDifficulty: userDifficulty, 
         });
 
-        // console.log(
-        //     'before setting the state to totalGameTime',
-        //     this.state.timer
-        // );
-        // console.log('total game time', totalGameTime);
+        console.log(userDifficulty);
+        // Set the timer to a variable so that clearInterval() can be called when the time runs out or if the user exits the game.
+        this.counter = setInterval(this.updateGameTime, 1000);
+    };
 
-        // this.setState((currentState) => {
-        //     return { timer: 20 };
-        // });
-        console.log('Timer in Timer', this.state.timer);
+    updateGameTime = () => {
+        const currentGameTime = this.state.currentGameTime;
+        if (currentGameTime <= 0) {
+            this.endGame();
+        } else {
+            this.setState({ currentGameTime: currentGameTime - 1 });
+        }
+    };
 
-        // console.log('state of time after setting state', this.state.timer);
-        // console.log('this is the totalGame time', totalGameTime);
-        // console.log(
-        //     'this is the data type of totalGameTime',
-        //     typeof totalGameTime
-        // );
+    endGame = () => {
+        clearInterval(this.counter);
+        this.setState({ currentGameTime: 0 });
+    };
 
-        this.startTimer(this.state.timer);
+    handleUserNameInput = (e) => {
+        this.setState({ userName: e.target.value });
+    };
+
+    handleSubmitScore = (e) => {
+        e.preventDefault();
+
+        // Add their score to the db
+        leaderboardDbRef.push().set({
+            name: this.state.userName || 'Anonymous',
+            score: this.state.score,
+        })
+        .then(() => {
+            this.setState({ userDifficulty: '', index: 0, score: 0 });
+            this.generateWordSet();
+        });
     };
 
     render() {
         return (
             <div className="wrapper">
-                <Header score={this.state.score} timer={this.state.timer} />
-                <LandingPage handleOnClickButton={this.timerLevelStartGame} />
-                <Question
-                    data={this.state.questionSet[this.state.index]}
-                    updateScore={this.updateScore}
-                />
-                {this.state.index > 9 ? <button>Show results</button> : null}
+                <Header score={this.state.score} currentTime={this.state.currentGameTime} />
+
+                {this.state.userDifficulty === '' ? (
+                    <LandingPage
+                        handleOnClickButton={this.timerLevelStartGame}
+                    />
+                ) : (
+                    <Question
+                        data={this.state.questionSet[this.state.index]}
+                        updateScore={this.updateScore}
+                    />
+                )}
+                
+                {this.state.index > 9 ?
+                    (<div>
+                        <button>Show results</button> 
+                        <span> Enter your name </span>
+                        <input type="text" value={this.state.userName} onChange={this.handleUserNameInput} required/>
+                        <button onClick={this.handleSubmitScore}>Submit Score</button>
+                    </div>)
+                    
+                    : null
+                }
             </div>
         );
     }

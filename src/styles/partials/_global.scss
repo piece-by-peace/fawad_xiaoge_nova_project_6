@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css?family=Crimson+Text:400,400i,600,600i");
-@import url("https://fonts.googleapis.com/css?family=Lora:400,700|Open+Sans");
 html{
   font-size: 62.5%;
 }
@@ -35,6 +33,7 @@ h2{
   font-size: $large-font-size;
   color: darken($secondary-color, 15);
   margin-bottom: 0.5rem;
+  font-weight: normal;
 }
 p {
   width: 100%;
@@ -88,7 +87,7 @@ p {
   left: 25%;
   right: 25%;
   top: 5%;
-  bottom: 5%;
+  bottom: 2%;
   background: whitesmoke;
   border: 6px double $primary-color;
 }

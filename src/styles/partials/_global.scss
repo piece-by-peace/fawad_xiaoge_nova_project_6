@@ -14,6 +14,7 @@ body{
 }
 
 header{
+  font-weight: bold;
   width: 100%;
   margin: 0 auto;
   div:nth-child(1){float: left;} 
@@ -42,7 +43,7 @@ h1{
 
 h2, .entry{
   font-size: 3rem;
-  color: $primary-color;
+  color: lighten($primary-color,15);
 }
 
 .entry{ font-size: $small-font-size; }
@@ -125,11 +126,12 @@ p {
 .landing_page img{
   height: 100px;
   width: 100px;
+  margin-right: 1px;
 }
 
 .monogram{
+  display: inline-block;
   margin-top: 10vh;
-  width: 100%;
   div:nth-child(1){float: left;} 
   div:nth-child(2){float: right;} 
 }

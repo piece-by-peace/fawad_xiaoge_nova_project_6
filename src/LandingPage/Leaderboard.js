@@ -7,6 +7,7 @@ class Leaderboard extends Component {
         this.state = {
             leaderboard: [],
             leaderboardShown: false,
+            gameInfoShown: false,
         };
     }
 
@@ -28,6 +29,12 @@ class Leaderboard extends Component {
     toggleLeaderboard = () => {
         this.setState((currentState) => {
             return { leaderboardShown: !currentState.leaderboardShown };
+        });
+    };
+
+    toggleAboutGame = () => {
+        this.setState((currentState) => {
+            return { gameInfoShown: !currentState.gameInfoShown };
         });
     };
 
@@ -53,12 +60,30 @@ class Leaderboard extends Component {
             }
         };
 
+        const gameInfoContent = (showContent) => {
+            if (showContent) {
+                return (
+                    <div className="instruction">
+                        <p>Match the definition to the correct word</p>
+                    </div>
+                );
+            } else {
+                return null;
+            }
+        };
+
         return (
             <div>
-                <button className="btn-leaderboard" onClick={this.toggleLeaderboard}>
-                    Show leaderboard
-                </button>
-                {leaderboardContent(this.state.leaderboardShown)}
+                <div>
+                    <button className="btn-leaderboard" onClick={this.toggleAboutGame}>How to Play</button>
+                    {gameInfoContent(this.state.gameInfoShown)}
+                </div>
+                <div>
+                    <button className="btn-leaderboard" onClick={this.toggleLeaderboard}>
+                        Show leaderboard
+                    </button>
+                    {leaderboardContent(this.state.leaderboardShown)}
+                </div>
             </div>
         );
     }

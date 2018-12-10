@@ -38,7 +38,7 @@ const Question = ({ data, updateScore }) => {
 
     return (
         <div className="question">
-            <p>{Answer(data.definition)}</p>
+            <p className="definition">{Answer(data.definition)}</p>
             {data.wordPosition === 0 ? (
                 <div>
                     <button onClick={checkAnswer} value={data.originalWord}>

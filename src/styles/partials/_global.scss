@@ -20,14 +20,19 @@ header{
   div:nth-child(2){float: right;} 
 }
 
+h2{
+  margin: 0;
+}
+
 h1{
   font-family: $heading-font-family;
-  font-size: 5rem;
+  font-size: $xlarge-font-size;
   font-weight: bold;
   font-style: normal;
   color: $primary-color;
+  margin: 3rem 0;
   span{
-    font-size: 3.5rem;
+    font-size: $large-font-size;
     display: block;
     line-height: 0.7;
     font-style: italic;
@@ -36,8 +41,9 @@ h1{
 }
 
 h2{
-  font-size: 3rem;
+  font-size: $large-font-size;
   color: darken($secondary-color, 15);
+  margin-bottom: 0.5rem;
 }
 
 .wrapper{
@@ -48,14 +54,14 @@ h2{
 };
 
 .question p {
-  width: 80%;
+  max-width: 60%;
   margin: 20px auto;
 }
 
 .app-header{
   margin-top: 2rem;
-  color: $primary-color;
-  font-size: $medium-font-size;
+  color: darken($secondary-color,30);
+  font-size: $large-font-size;
 }
 
 .modal{
@@ -87,4 +93,14 @@ h2{
 .input-wrapper{
     padding: 0 20%;
     margin: 5rem 0;
+}
+
+.instruction{
+  font-weight: bold;
+  color: $primary-color;
+}
+
+.definition{
+  font-size: $large-font-size;
+  color: $primary-color;
 }

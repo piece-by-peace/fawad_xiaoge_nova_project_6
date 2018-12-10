@@ -120,9 +120,9 @@ class App extends Component {
                 break;
         }
 
-        this.setState({ 
+        this.setState({
             currentGameTime: selectedGameTime,
-            userDifficulty: userDifficulty, 
+            userDifficulty: userDifficulty,
         });
 
         console.log(userDifficulty);
@@ -156,38 +156,54 @@ class App extends Component {
             name: this.state.userName || 'Anonymous',
             score: this.state.score,
         })
-        .then(() => {
-            this.setState({ userDifficulty: '', index: 0, score: 0 });
-            this.generateWordSet();
-        });
+            .then(() => {
+                this.setState({ userDifficulty: '', index: 0, score: 0 });
+                this.generateWordSet();
+            });
+        this.setState({
+            userName: ""
+        })
     };
+
 
     render() {
         return (
             <div className="wrapper">
-
-                <Header score={this.state.score} currentTime={this.state.currentGameTime} />
                 {this.state.userDifficulty === '' ? (
                     <LandingPage
                         handleOnClickButton={this.timerLevelStartGame}
                     />
                 ) : (
-                    <Question
-                        data={this.state.questionSet[this.state.index]}
-                        updateScore={this.updateScore}
-                    />
-                )}
-                
-                {this.state.index > 9 ?
+
+                        (this.state.currentGameTime === 0 && this.state.userDifficulty !== '') || (this.state.index > 9) ?
+                            <div>
+                                <Header score={this.state.score} currentTime={this.state.currentGameTime} />
+                                <form className="input-wrapper">
+                                    <label htmlFor="userName"> Enter your name </label>
+                                    <input id="userName" className="input-field" type="text" value={this.state.userName} onChange={this.handleUserNameInput} placeholder="Name" required />
+                                    <button onClick={this.handleSubmitScore}>Submit Score</button>
+                                </form>
+                            </div>
+                            :
+                            <div>
+                                <Header score={this.state.score} currentTime={this.state.currentGameTime} />
+                                <Question
+                                    data={this.state.questionSet[this.state.index]}
+                                    updateScore={this.updateScore}
+                                />
+                            </div>
+                    )}
+
+                {/* {this.state.index > 9 ?
                     (<div>
-                        <button>Show results</button> 
+                        <button>Show results</button>
                         <span> Enter your name </span>
-                        <input type="text" value={this.state.userName} onChange={this.handleUserNameInput} required/>
+                        <input type="text" value={this.state.userName} onChange={this.handleUserNameInput} required />
                         <button onClick={this.handleSubmitScore}>Submit Score</button>
                     </div>)
-                    
+
                     : null
-                }
+                } */}
             </div>
         );
     }

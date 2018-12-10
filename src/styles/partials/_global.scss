@@ -14,31 +14,38 @@ body{
 }
 
 header{
-  width: 50%;
+  width: 100%;
   margin: 0 auto;
   div:nth-child(1){float: left;} 
   div:nth-child(2){float: right;} 
 }
 
 h1{
+  text-transform: uppercase;
+  margin: 0;
+  height: 100px;
+  text-align: left;
+  display: inline-block;
   font-family: $heading-font-family;
-  font-size: 5rem;
+  font-size: 4rem;
   font-weight: bold;
   font-style: normal;
-  color: $primary-color;
+  color: $monogram-color;
   span{
-    font-size: 3.5rem;
+    font-size: $large-font-size;
     display: block;
-    line-height: 0.7;
-    font-style: italic;
-    margin: 1rem 0;
+    line-height: 0.6;
+    // font-style: italic;
+    margin: 0.5rem 0;
   }
 }
 
-h2{
+h2, .entry{
   font-size: 3rem;
-  color: darken($secondary-color, 15);
+  color: $primary-color;
 }
+
+.entry{ font-size: $small-font-size; }
 
 .wrapper{
    max-width: 1600px;
@@ -47,13 +54,82 @@ h2{
    color: $secondary-color;
 };
 
-.question p {
-  width: 80%;
+// horizontal alignment for questions and final form 
+.question, .input-wrapper{
+  transform: translateY(25vh);
+}
+
+p {
+  width: 50%;
   margin: 20px auto;
+  color: lighten($primary-color,10);
+  font-size: $medium-font-size;
+}
+
+.question p{
+  color: lighten($primary-color,20);
 }
 
 .app-header{
   margin-top: 2rem;
   color: $primary-color;
   font-size: $medium-font-size;
+}
+
+.modal-container, .modal{
+  position: absolute;
+  left: 0%;
+  right: 0%;
+  top: 0%;
+  bottom: 0%;
+  background: rgba(0, 0, 0, 0.5);
+  // background: whitesmoke;
+  z-index: 9;
+  h2{
+    text-decoration: underline;
+    margin: 20px 0px 10px 0px;
+    color: $primary-color;
+  }
+}
+
+.modal-container{
+  position: absolute;
+  left: 25%;
+  right: 25%;
+  top: 5%;
+  bottom: 5%;
+  background: whitesmoke;
+  border: 6px double $primary-color;
+}
+
+.btn-leaderboard{
+  z-index: 10;
+}
+
+.input-field{
+  border: 5px double $primary-color;
+  // border-left: 5px double $primary-color;
+  // border-right: 5px double $primary-color;
+  display: block;
+  width: 100%;
+}
+
+.input-wrapper{
+    padding: 0 20%;
+    label{
+      color: $primary-color;
+      font-size: $small-font-size;
+    }
+}
+
+.landing_page img{
+  height: 100px;
+  width: 100px;
+}
+
+.monogram{
+  margin-top: 10vh;
+  width: 100%;
+  div:nth-child(1){float: left;} 
+  div:nth-child(2){float: right;} 
 }

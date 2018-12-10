@@ -35,15 +35,17 @@ class Leaderboard extends Component {
         const leaderboardContent = (showContent) => {
             if (showContent) {
                 return (
-                    <div>
-                        <h2> Leaderboard </h2>
-                        {this.state.leaderboard.map((entry, index) => {
-                            return (
-                                <div key={entry.key}>
-                                    {index + 1}. {entry.name} - {entry.score}
-                                </div>
-                            );
-                        })}
+                    <div className="modal">
+                        <div className="modal-container">
+                            <h2>Leaderboard</h2>
+                            {this.state.leaderboard.map((entry, index) => {
+                                return (
+                                    <div className="entry" key={entry.key}>
+                                        {index + 1}. {entry.name} - {entry.score}
+                                    </div>
+                                );
+                            })}
+                        </div>
                     </div>
                 );
             } else {
@@ -53,7 +55,7 @@ class Leaderboard extends Component {
 
         return (
             <div>
-                <button onClick={this.toggleLeaderboard}>
+                <button className="btn-leaderboard" onClick={this.toggleLeaderboard}>
                     Show leaderboard
                 </button>
                 {leaderboardContent(this.state.leaderboardShown)}

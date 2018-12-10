@@ -1,31 +1,25 @@
 @import url("https://fonts.googleapis.com/css?family=Crimson+Text:400,400i,600,600i");
 @import url("https://fonts.googleapis.com/css?family=Lora:400,700|Open+Sans");
-
-
 html{
   font-size: 62.5%;
 }
-
 body{
   font-size: 1.6rem;
   text-align: center;
   font-family: 'Crimson Text', serif;
   background-color: $background-color;
 }
-
 header{
   width: 100%;
   margin: 0 auto;
   div:nth-child(1){float: left;} 
   div:nth-child(2){float: right;} 
 }
-
 .entry{
   font-size: $medium-font-size;
   color: lighten($primary-color,15);
   text-align: left;
 }
-
 h1{
   font-family: $heading-font-family;
   font-size: $xlarge-font-size;
@@ -41,28 +35,24 @@ h1{
     margin: 1rem 0;
   }
 }
-
 h2{
   margin: 0;
   font-size: $large-font-size;
   color: darken($secondary-color, 15);
   margin-bottom: 0.5rem;
 }
-
 .wrapper{
    max-width: 1600px;
    width: 80%;
    margin: 0 auto;
    color: $secondary-color;
 };
-
 // horizontal alignment for questions and final form 
 // .input-wrapper
 .question{
   max-width: 650px;
   margin: 10rem auto;
 }
-
 p {
   width: 100%;
   margin: 20px auto;
@@ -72,13 +62,11 @@ p {
 .question p{
   color: lighten($primary-color,20);
 }
-
 .app-header{
   margin-top: 2rem;
   color: darken($secondary-color,30);
   font-size: $large-font-size;
 }
-
 .modal-container, .modal{
   position: absolute;
   left: 0%;
@@ -103,24 +91,9 @@ p {
   background: whitesmoke;
   border: 6px double $primary-color;
 }
-
 .btn-leaderboard{
   z-index: 10;
 }
-
-// .input-field{
-//   padding: 1rem;
-//   margin: 2rem;
-//   font-size: $medium-font-size;
-//   border-radius: 2px;
-//   border: 1.5px solid $primary-color;
-//   text-transform: capitalize;
-// }
-
-// .input-wrapper{
-//     margin: 5rem auto;
-// }
-
 .input-field{
   border: 5px double $primary-color;
   padding: 1rem;
@@ -130,20 +103,40 @@ p {
 }
 .input-wrapper{
     padding: 0 20%;
-    margin-top: 10rem;
 }
-
 .instruction{
   font-weight: bold;
   color: $primary-color;
 }
-
 .definition{
   font-size: $large-font-size;
   color: $primary-color;
 }
-
 .entries{
   display: inline-block;
   margin-top: 3rem;
+}
+
+svg {
+  width: 250px;
+  height: 250px;
+  margin: 0 auto;
+  path {
+    fill-opacity: 0;
+    stroke: $primary-color;
+    stroke-width: 1;
+    stroke-dasharray: 870;
+    stroke-dashoffset: 870;
+    animation: draw 15s ease;
+    animation-fill-mode:forwards;
+  }
+}
+
+@keyframes draw {
+  from {
+    stroke-dashoffset: 870;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
 }

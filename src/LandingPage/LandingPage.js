@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Instructions from './Instructions'
 import Leaderboard from './Leaderboard';
 
 const LandingPage = ({ handleOnClickButton }) => {
@@ -7,8 +7,8 @@ const LandingPage = ({ handleOnClickButton }) => {
     return (
         <div className="landing_page">
             <h1>Piece <span>by</span> Peace</h1>
-            <h2>Choose difficulty</h2>
             <div>
+                <h2>Choose difficulty</h2>
                 <button value="easy" onClick={handleOnClickButton}>
                     easy
                 </button>
@@ -21,6 +21,7 @@ const LandingPage = ({ handleOnClickButton }) => {
                     hard
                 </button>
             </div>
+            <Instructions />
             <Leaderboard />
         </div>
     );

@@ -4,7 +4,6 @@ import './App.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-import firebase from './firebase';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

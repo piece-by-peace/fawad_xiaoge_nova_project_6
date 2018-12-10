@@ -64,21 +64,29 @@ h2{
   font-size: $large-font-size;
 }
 
-.modal{
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
+.modal-container, .modal{
+  position: absolute;
+  left: 0%;
+  right: 0%;
+  top: 0%;
+  bottom: 0%;
   background: rgba(0, 0, 0, 0.5);
+  // background: whitesmoke;
   z-index: 9;
-  padding: 2rem;
+  h2{
+    text-decoration: underline;
+    margin: 20px 0px 10px 0px;
+    color: $primary-color;
+  }
 }
-
 .modal-container{
-  background: white;
-  max-width: 650px;
-  margin: 0 auto;
+  position: absolute;
+  left: 25%;
+  right: 25%;
+  top: 5%;
+  bottom: 5%;
+  background: whitesmoke;
+  border: 6px double $primary-color;
 }
 
 .btn-leaderboard{
@@ -86,13 +94,19 @@ h2{
 }
 
 .input-field{
+  width: 500px;
   display: block;
-  width: 100%;
+  padding: 1rem;
+  margin: 2rem;
+  font-size: $medium-font-size;
+  border-radius: 2px;
+  border: 1.5px solid $primary-color;
+  text-transform: capitalize;
 }
 
 .input-wrapper{
-    padding: 0 20%;
-    margin: 5rem 0;
+    margin: 5rem auto;
+    width: 500px;
 }
 
 .instruction{

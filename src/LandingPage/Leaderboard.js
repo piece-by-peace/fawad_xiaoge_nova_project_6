@@ -32,12 +32,6 @@ class Leaderboard extends Component {
         });
     };
 
-    toggleAboutGame = () => {
-        this.setState((currentState) => {
-            return { gameInfoShown: !currentState.gameInfoShown };
-        });
-    };
-
     render() {
         const leaderboardContent = (showContent) => {
             if (showContent) {
@@ -60,24 +54,8 @@ class Leaderboard extends Component {
             }
         };
 
-        const gameInfoContent = (showContent) => {
-            if (showContent) {
-                return (
-                    <div className="instruction">
-                        <p>Match the definition to the correct word</p>
-                    </div>
-                );
-            } else {
-                return null;
-            }
-        };
-
         return (
             <div>
-                <div>
-                    <button className="btn-leaderboard" onClick={this.toggleAboutGame}>How to Play</button>
-                    {gameInfoContent(this.state.gameInfoShown)}
-                </div>
                 <div>
                     <button className="btn-leaderboard" onClick={this.toggleLeaderboard}>
                         Show leaderboard

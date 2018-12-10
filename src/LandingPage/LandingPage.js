@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Instructions from './Instructions'
 import Leaderboard from './Leaderboard';
 
 const LandingPage = ({ handleOnClickButton }) => {
@@ -21,6 +21,7 @@ const LandingPage = ({ handleOnClickButton }) => {
                     hard
                 </button>
             </div>
+            <Instructions />
             <Leaderboard />
         </div>
     );

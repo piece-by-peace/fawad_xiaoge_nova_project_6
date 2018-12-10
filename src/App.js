@@ -4,6 +4,7 @@ import './App.scss'
 import Question from './Questions/Question';
 import Header from './Questions/Header';
 import LandingPage from './LandingPage/LandingPage';
+import Leaderboard from './LandingPage/Leaderboard';
 import stockWords from './Questions/data';
 
 import { leaderboardDbRef } from './firebase';
@@ -179,10 +180,11 @@ class App extends Component {
                             <div>
                                 <Header score={this.state.score} currentTime={this.state.currentGameTime} />
                                 <div className="input-wrapper">
-                                    <label htmlFor="userName"> Enter your name </label>
-                                    <input id="userName" className="input-field" type="text" value={this.state.userName} onChange={this.handleUserNameInput} placeholder="Name" required />
+                                    <label htmlFor="userName" className="visually-hidden"> Enter your name </label>
+                                    <input id="userName" className="input-field" type="text" value={this.state.userName} onChange={this.handleUserNameInput} placeholder="Enter your name" required />
                                     <button onClick={this.handleSubmitScore}>Submit Score</button>
                                 </div>
+                                <Leaderboard />
                             </div>
                             :
                             <div>

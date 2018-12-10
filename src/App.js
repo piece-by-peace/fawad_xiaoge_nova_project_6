@@ -22,11 +22,13 @@ class App extends Component {
             userDifficulty: '',
             currentGameTime: 0,
             userName: '',
+            leaderboardShown: false
         };
     }
 
     componentDidMount() {
         this.generateWordSet();
+        this.updateLeaderboard();
     }
 
     generateWordSet = () => {
@@ -77,6 +79,21 @@ class App extends Component {
             });
         });
     };
+
+    updateLeaderboard = () => {
+        // Get the top 10 entries, ordered by score
+        leaderboardDbRef
+            .orderByChild('score')
+            .limitToLast(10)
+            .on('value', (snapshot) => {
+                let leaderboard = [];
+                snapshot.forEach((child) => {
+                    leaderboard.unshift(child.val());
+                });
+
+                this.setState({ leaderboard: leaderboard });
+            });
+    }
 
     counter = null;
 
@@ -157,17 +174,45 @@ class App extends Component {
             name: this.state.userName || 'Anonymous',
             score: this.state.score,
         })
-            .then(() => {
-                this.setState({ userDifficulty: '', index: 0, score: 0 });
-                this.generateWordSet();
-            });
+        // for Try Again functionality
+            // .then(() => {
+            //     this.setState({ userDifficulty: '', index: 0, score: 0 });
+            //     this.generateWordSet();
+            // });
         this.setState({
             userName: ""
         })
+
+        this.setState((currentState) => {
+            return { leaderboardShown: !currentState.leaderboardShown };
+        });
     };
 
 
     render() {
+        const leaderboardContent = (showContent) => {
+            if (showContent) {
+                return (
+                    <div className="modal">
+                        <div className="modal-container">
+                            <h2> Leaderboard </h2>
+                            <div className="entries">
+                                {this.state.leaderboard.map((entry, index) => {
+                                    return (
+                                        <div className="entry" key={entry.key}>
+                                            {index + 1}. {entry.name} - {entry.score}
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                    </div>
+                );
+            } else {
+                return null;
+            }
+        };
+
         return (
             <div className="wrapper">
                 {this.state.userDifficulty === '' ? (
@@ -183,8 +228,9 @@ class App extends Component {
                                     <label htmlFor="userName" className="visually-hidden"> Enter your name </label>
                                     <input id="userName" className="input-field" type="text" value={this.state.userName} onChange={this.handleUserNameInput} placeholder="Enter your name" required />
                                     <button onClick={this.handleSubmitScore}>Submit Score</button>
+                                    {leaderboardContent(this.state.leaderboardShown)}
                                 </div>
-                                <Leaderboard />
+                                {/* <Leaderboard /> */}
                             </div>
                             :
                             <div>

@@ -20,7 +20,8 @@ class Instructions extends Component {
          if (showContent) {
             return (
                <div className="instruction">
-                  <p>Match the definition to the correct word</p>
+                  <p>Match the definition to the correct homophone</p>
+                  <p>Total of ten questions</p>
                </div>
             );
          } else {

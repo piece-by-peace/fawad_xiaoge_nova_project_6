@@ -23,8 +23,8 @@ const LandingPage = ({ handleOnClickButton }) => {
                     hard
                 </button>
             </div>
-            <Instructions />
             <Leaderboard />
+            <Instructions />
         </div>
     );
 };

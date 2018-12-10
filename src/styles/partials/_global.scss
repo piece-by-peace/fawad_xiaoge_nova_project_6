@@ -15,11 +15,6 @@ header{
   div:nth-child(1){float: left;} 
   div:nth-child(2){float: right;} 
 }
-.entry{
-  font-size: $medium-font-size;
-  color: lighten($primary-color,15);
-  text-align: left;
-}
 h1{
   font-family: $heading-font-family;
   font-size: $xlarge-font-size;
@@ -41,6 +36,17 @@ h2{
   color: darken($secondary-color, 15);
   margin-bottom: 0.5rem;
 }
+p {
+  width: 100%;
+  margin: 10px auto;
+  color: lighten($primary-color,10);
+  font-size: $medium-font-size;
+}
+.entry{
+  font-size: $medium-font-size;
+  color: lighten($primary-color,15);
+  text-align: left;
+}
 .wrapper{
    max-width: 1600px;
    width: 80%;
@@ -53,17 +59,12 @@ h2{
   max-width: 650px;
   margin: 10rem auto;
 }
-p {
-  width: 100%;
-  margin: 20px auto;
-  color: lighten($primary-color,10);
-  font-size: $medium-font-size;
-}
+
 .question p{
   color: lighten($primary-color,20);
 }
 .app-header{
-  margin-top: 2rem;
+      margin: 2rem 0 4rem 0;
   color: darken($secondary-color,30);
   font-size: $large-font-size;
 }
@@ -115,7 +116,7 @@ p {
 }
 .entries{
   display: inline-block;
-  margin-top: 3rem;
+  margin-top: 1.5rem;
 }
 
 svg {
@@ -133,7 +134,7 @@ svg {
   }
 }
 
-.secondSVG{
+.timerSVG{
   animation: draw 15s ease, shake 3s ease;
   path{
     stroke-width: 1.5;

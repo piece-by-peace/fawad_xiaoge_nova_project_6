@@ -24,7 +24,7 @@ header{
 h1{
   text-transform: uppercase;
   margin: 0;
-  height: 100px;
+  max-height: 100px;
   text-align: left;
   display: inline-block;
   font-family: $heading-font-family;
@@ -126,7 +126,7 @@ p {
 .landing_page img{
   height: 100px;
   width: 100px;
-  margin-right: 1px;
+  margin-right: 2px;
 }
 
 .monogram{

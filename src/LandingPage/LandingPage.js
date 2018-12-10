@@ -7,10 +7,8 @@ const LandingPage = ({ handleOnClickButton }) => {
     return (
         <div className="landing_page">
             
-            <div className="monogram">
-                <img src={require('./letter_p_medieval_monogram.svg')} alt="" />
-                <h1>iece <span>by</span> eace</h1>
-            </div>
+
+            <h1>Piece <span>by</span> Peace</h1>
 
             <p>match each homophone to its corresponding correct defintion</p>
             <h2>Choose difficulty</h2>

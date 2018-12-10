@@ -14,14 +14,16 @@ body{
 }
 
 header{
-  width: 50%;
+  width: 100%;
   margin: 0 auto;
   div:nth-child(1){float: left;} 
   div:nth-child(2){float: right;} 
 }
 
-h2{
-  margin: 0;
+.entry{
+  font-size: $medium-font-size;
+  color: lighten($primary-color,15);
+  text-align: left;
 }
 
 h1{
@@ -41,6 +43,7 @@ h1{
 }
 
 h2{
+  margin: 0;
   font-size: $large-font-size;
   color: darken($secondary-color, 15);
   margin-bottom: 0.5rem;
@@ -53,9 +56,21 @@ h2{
    color: $secondary-color;
 };
 
-.question p {
-  max-width: 60%;
+// horizontal alignment for questions and final form 
+// .input-wrapper
+.question{
+  max-width: 650px;
+  margin: 10rem auto;
+}
+
+p {
+  width: 100%;
   margin: 20px auto;
+  color: lighten($primary-color,10);
+  font-size: $medium-font-size;
+}
+.question p{
+  color: lighten($primary-color,20);
 }
 
 .app-header{
@@ -93,20 +108,29 @@ h2{
   z-index: 10;
 }
 
-.input-field{
-  width: 500px;
-  display: block;
-  padding: 1rem;
-  margin: 2rem;
-  font-size: $medium-font-size;
-  border-radius: 2px;
-  border: 1.5px solid $primary-color;
-  text-transform: capitalize;
-}
+// .input-field{
+//   padding: 1rem;
+//   margin: 2rem;
+//   font-size: $medium-font-size;
+//   border-radius: 2px;
+//   border: 1.5px solid $primary-color;
+//   text-transform: capitalize;
+// }
 
+// .input-wrapper{
+//     margin: 5rem auto;
+// }
+
+.input-field{
+  border: 5px double $primary-color;
+  padding: 1rem;
+  font-size: $medium-font-size;
+  display: block;
+  width: 100%;
+}
 .input-wrapper{
-    margin: 5rem auto;
-    width: 500px;
+    padding: 0 20%;
+    margin-top: 10rem;
 }
 
 .instruction{
@@ -117,4 +141,9 @@ h2{
 .definition{
   font-size: $large-font-size;
   color: $primary-color;
+}
+
+.entries{
+  display: inline-block;
+  margin-top: 3rem;
 }

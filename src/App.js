@@ -21,8 +21,7 @@ class App extends Component {
             index: 0,
             userDifficulty: '',
             currentGameTime: 0,
-            userName: '',
-            leaderboardShown: false
+            userName: ''
         };
     }
 
@@ -174,44 +173,18 @@ class App extends Component {
             name: this.state.userName || 'Anonymous',
             score: this.state.score,
         })
-        // for Try Again functionality
-        // .then(() => {
-        //     this.setState({ userDifficulty: '', index: 0, score: 0 });
-        //     this.generateWordSet();
-        // });
+            // for Try Again functionality
+            .then(() => {
+                this.setState({ userDifficulty: '', index: 0, score: 0 });
+                this.generateWordSet();
+            });
         this.setState({
             userName: ""
         })
-
-        this.setState((currentState) => {
-            return { leaderboardShown: !currentState.leaderboardShown };
-        });
     };
 
 
     render() {
-        const leaderboardContent = (showContent) => {
-            if (showContent) {
-                return (
-                    <div className="modal">
-                        <div className="modal-container">
-                            <h2> Leaderboard </h2>
-                            <div className="entries">
-                                {this.state.leaderboard.map((entry, index) => {
-                                    return (
-                                        <div className="entry" key={entry.key}>
-                                            {index + 1}. {entry.name} - {entry.score}
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                        </div>
-                    </div>
-                );
-            } else {
-                return null;
-            }
-        };
 
         return (
             <div className="wrapper">
@@ -242,7 +215,6 @@ class App extends Component {
                                     <label htmlFor="userName" className="visually-hidden"> Enter your name </label>
                                     <input id="userName" className="input-field" type="text" value={this.state.userName} onChange={this.handleUserNameInput} placeholder="Enter your name" required />
                                     <button onClick={this.handleSubmitScore}>Submit Score</button>
-                                    {leaderboardContent(this.state.leaderboardShown)}
                                 </div>
                                 <Leaderboard />
                             </div>

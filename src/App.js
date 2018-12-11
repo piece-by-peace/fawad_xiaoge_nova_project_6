@@ -56,7 +56,6 @@ class App extends Component {
         const axiosArray = randomSet.map((word) => {
             // still keeping the old axios had to use proxy after deploying the firebase app
             // return axios({
-            //     headers: { "Access-Control-Allow-Origin": "http://localhost:3000" },
             //     method: 'GET',
             //     url: `https://api.datamuse.com/words?rel_hom=${word}&md=d`,
             //     dataType: 'json'
@@ -237,16 +236,6 @@ class App extends Component {
                                 <Footer />
                             </div>
                     )}
-
-                {/* {this.state.index > 9 ?
-                    (<div>
-                        <button>Show results</button>
-                        <span> Enter your name </span>
-                        <input type="text" value={this.state.userName} onChange={this.handleUserNameInput} required />
-                        <button onClick={this.handleSubmitScore}>Submit Score</button>
-                    </div>)
-                    : null
-                } */}
             </div>
         );
     }

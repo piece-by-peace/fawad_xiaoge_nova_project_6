@@ -55,19 +55,19 @@ class App extends Component {
 
         const axiosArray = randomSet.map((word) => {
             // still keeping the old axios had to use proxy after deploying the firebase app
-            return axios({
-                method: 'GET',
-                url: `https://api.datamuse.com/words?rel_hom=${word}&md=d`,
-                dataType: 'json'
-            });
             // return axios({
-            //     url: 'https://proxy.hackeryou.com',
-            //     dataResponse: 'json',
             //     method: 'GET',
-            //     params: {
-            //         reqUrl: `https://api.datamuse.com/words?rel_hom=${word}&md=d`
-            //     }
+            //     url: `https://api.datamuse.com/words?rel_hom=${word}&md=d`,
+            //     dataType: 'json'
             // });
+            return axios({
+                url: 'https://proxy.hackeryou.com',
+                dataResponse: 'json',
+                method: 'GET',
+                params: {
+                    reqUrl: `https://api.datamuse.com/words?rel_hom=${word}&md=d`
+                }
+            });
         });
 
         return axios.all(axiosArray).then((results) => {

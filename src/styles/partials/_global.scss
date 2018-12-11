@@ -2,9 +2,9 @@ html{
   font-size: 62.5%;
 }
 body{
-  font-size: 1.6rem;
+  font-size: $small-font-size;
   text-align: center;
-  font-family: 'Crimson Text', serif;
+  font-family: $body-font-family;
   background-color: $background-color;
 }
 header{
@@ -63,7 +63,7 @@ p {
   color: lighten($primary-color,20);
 }
 .app-header{
-      margin: 2rem 0 4rem 0;
+  margin: 2rem 0 4rem 0;
   color: darken($secondary-color,30);
   font-size: $large-font-size;
 }

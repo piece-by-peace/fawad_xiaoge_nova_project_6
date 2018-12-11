@@ -73,14 +73,7 @@ p{
 }
 
 .question p{
-  opacity: 0;
   color: lighten($primary-color,20);
-  animation: fadeIn 1.0s ease forwards;
-}
-
-@keyframes fadeIn{
-  to { 
-     opacity: 1; }
 }
 
 .app-header{

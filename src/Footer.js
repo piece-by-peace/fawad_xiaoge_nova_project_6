@@ -8,7 +8,7 @@ const Footer = () => {
             <a className="dev-name" href="http://fawadcodes.com" target="_blank">Fawad</a>
             <a className="dev-name" href="https://novaquach.com/" target="_blank">Nova</a>
             <a className="dev-name" href="http://xiaogedeng.com/" target="_blank">Xiaoge</a>
-            &copy; 2018
+            &copy;2018
          </p>
       </footer>
    );

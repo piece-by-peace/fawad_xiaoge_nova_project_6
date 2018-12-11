@@ -9,7 +9,7 @@ const LandingPage = ({ handleOnClickButton }) => {
             <h1>Piece <span>by</span> Peace</h1>
             <div className="difficulty-options">
                 <h2>Choose difficulty</h2>
-                <button value="easy" onClick={handleOnClickButton}>
+                <button onClick={handleOnClickButton} value="easy">
                     easy
                 </button>
 

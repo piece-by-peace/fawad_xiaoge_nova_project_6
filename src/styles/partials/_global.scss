@@ -56,26 +56,17 @@ a{
 }
 
 footer{
-  position: absolute;
+  position: fixed;
   left: 0;
   right: 0;
   bottom: 0;
   background: $quaterary-color;
-  border-top: 1px $primary-color dotted;
+  border-top: 2px $secondary-color dotted;
   p{
-    margin: 0.3rem 0;
+    margin: 0.3rem;
     padding: 0;
     font-size: $small-font-size;
   }
-}
-
-.other-footer{
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: 50px;
-  color: red;
 }
 
 .entry{
@@ -137,9 +128,6 @@ footer{
     right: 5%;
   }
   
-}
-.btn-leaderboard{
-  z-index: 10;
 }
 
 .input-field{

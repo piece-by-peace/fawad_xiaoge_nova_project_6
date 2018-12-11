@@ -6,7 +6,6 @@ import Header from './Questions/Header';
 import LandingPage from './LandingPage/LandingPage';
 import Leaderboard from './LandingPage/Leaderboard';
 import stockWords from './Questions/data';
-
 import { leaderboardDbRef } from './firebase';
 
 class App extends Component {
@@ -235,7 +234,6 @@ class App extends Component {
                         <input type="text" value={this.state.userName} onChange={this.handleUserNameInput} required />
                         <button onClick={this.handleSubmitScore}>Submit Score</button>
                     </div>)
-
                     : null
                 } */}
             </div>

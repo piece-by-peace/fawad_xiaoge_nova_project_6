@@ -23,7 +23,7 @@ const Question = ({ data, updateScore }) => {
         }
     };
 
-    const Answer = (e) => {
+    const answer = (e) => {
         if (e.charAt(0) === "n") {
             let res = e.replace(/n/, "Noun:");
             return res
@@ -38,7 +38,7 @@ const Question = ({ data, updateScore }) => {
 
     return (
         <div className="question">
-            <p className="definition">{Answer(data.definition)}</p>
+            <p className="definition">{answer(data.definition)}</p>
             {data.wordPosition === 0 ? (
                 <div>
                     <button onClick={checkAnswer} value={data.originalWord}>

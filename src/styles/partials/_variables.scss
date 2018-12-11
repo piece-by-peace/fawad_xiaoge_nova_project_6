@@ -16,3 +16,9 @@ $large-font-size: 3.5rem;
 $xlarge-font-size: 7rem;
 
 $stripe-height: 7px;
+
+@media only screen and (max-width: 600px){
+  $small-font-size: 1.6rem; // you need to indent it to (re)set it just within this media-query
+      // now you copy all the css rules/properties that contain or are relative to $base_width e.g.
+      
+}

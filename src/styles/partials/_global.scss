@@ -1,6 +1,7 @@
 html{
   font-size: 62.5%;
   transition: font-size 0.5s ease;
+  height: 100%;
   @media screen and (max-width: $small-screen){
     font-size: 52.5%;
   }
@@ -11,6 +12,8 @@ body{
   text-align: center;
   font-family: $body-font-family;
   background-color: $background-color;
+  position: relative;
+  min-height: 100%;
 }
 
 header{
@@ -56,7 +59,7 @@ a{
 }
 
 footer{
-  position: fixed;
+  position: absolute;
   left: 0;
   right: 0;
   bottom: 0;

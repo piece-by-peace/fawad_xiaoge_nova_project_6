@@ -58,12 +58,10 @@ class Leaderboard extends Component {
 
         return (
             <div>
-                <div>
-                    <button className="btn-leaderboard" onClick={this.toggleLeaderboard}>
-                        Show leaderboard
+                <button className="btn-leaderboard" onClick={this.toggleLeaderboard}>
+                    Show leaderboard
                     </button>
-                    {leaderboardContent(this.state.leaderboardShown)}
-                </div>
+                {leaderboardContent(this.state.leaderboardShown)}
             </div>
         );
     }

@@ -69,15 +69,6 @@ footer{
   }
 }
 
-.other-footer{
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: 50px;
-  color: red;
-}
-
 .entry{
   font-size: $medium-font-size;
   color: lighten($primary-color,15);

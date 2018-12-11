@@ -44,7 +44,6 @@ class App extends Component {
         for (let i = 0; i < 10; i++) {
             randomSet.push(stockWords[i]);
         }
-        console.log(randomSet);
         // based on the number of words in randomSet call the API and pass the word and return its homophone and definition and push them into the questionSet array by building an object for each question
 
         // randomly  chooses a button configuration for displaying the two words
@@ -55,16 +54,25 @@ class App extends Component {
         };
 
         const axiosArray = randomSet.map((word) => {
+            // still keeping the old axios had to use proxy after deploying the firebase app
+            // return axios({
+            //     headers: { "Access-Control-Allow-Origin": "http://localhost:3000" },
+            //     method: 'GET',
+            //     url: `https://api.datamuse.com/words?rel_hom=${word}&md=d`,
+            //     dataType: 'json'
+            // });
             return axios({
+                url: 'https://proxy.hackeryou.com',
+                dataResponse: 'json',
                 method: 'GET',
-                url: `https://api.datamuse.com/words?rel_hom=${word}&md=d`,
-                dataType: 'json',
+                params: {
+                    reqUrl: `https://api.datamuse.com/words?rel_hom=${word}&md=d`
+                }
             });
         });
 
         return axios.all(axiosArray).then((results) => {
             const response = results.map((result, i) => {
-                // console.log(result);
                 return {
                     originalWord: randomSet[i],
                     homophone: result.data[0].word,
@@ -97,13 +105,11 @@ class App extends Component {
     counter = null;
 
     updateScore = (score) => {
-        console.log('before update score', this.state.score);
 
         this.setState((currentState) => {
             return { score: currentState.score + score };
         });
         this.showNextQuestion();
-        console.log('new score', this.state.score);
     };
 
     showNextQuestion = () => {
@@ -142,7 +148,6 @@ class App extends Component {
             userDifficulty: userDifficulty,
         });
 
-        console.log(userDifficulty);
         // Set the timer to a variable so that clearInterval() can be called when the time runs out or if the user exits the game.
         this.counter = setInterval(this.updateGameTime, 1000);
     };

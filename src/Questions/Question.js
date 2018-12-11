@@ -6,14 +6,8 @@ const Question = ({ data, updateScore }) => {
     if (data == null) {
         return null;
     }
-    console.log(data);
-
-    // <div> {JSON.stringify(data)}</div>;
-
     // checking if the value clicked matches the answer.
     const checkAnswer = (e) => {
-        console.log(e.target.value, 'clicked word');
-        console.log('homophone', data.homophone);
 
         const userClick = e.target.value;
         if (userClick === data.homophone) {

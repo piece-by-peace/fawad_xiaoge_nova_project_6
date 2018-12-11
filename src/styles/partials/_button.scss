@@ -3,14 +3,13 @@ button {
   display: inline-block;
   text-decoration: none;
   text-transform: capitalize;
-  font-weight: bold;
   font-size: $medium-font-size;
-  padding: 10px 20px 15px 20px;
-  margin: 15px;
+  padding: 8px 16px 16px 16px;
+  margin: 10px 10px;
   background-color: $quaterary-color;
   color: $primary-color;
   border: 2px solid $primary-color;
-  transition: all .3s ease;
+  transition: color .3s ease, transform .3s ease;
   overflow: hidden;
   position: relative;
   z-index: 3;
@@ -57,13 +56,17 @@ button {
   }
   &:active {
     &:after{
+      position: absolute;
       background-color: $background-color;
       left: -3%;
       width: 106%;
       background-image: none;
-      border-top: 3px solid $tertiary-color;
+      border-top: 4px solid $tertiary-color;
       z-index: 1;
+      @media screen and (max-width: $small-screen){
+        border-top:3px solid $tertiary-color;
       }
+    }
     &:before{
       content: '';
       width: 100%;

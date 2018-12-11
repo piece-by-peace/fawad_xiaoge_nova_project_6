@@ -7,8 +7,8 @@ $accent-color: #3ea2a6;
 $background-color: #f5f5f5;
 $monogram-color: #606060;
 
-$heading-font-family: 'Crimson Text', serif;
-$body-font-family: ‘Oxygen’, sans-serif;
+$heading-font-family: 'Lora', serif;
+$body-font-family: 'Crimson Text', serif;
 
 $small-font-size: 1.8rem;
 $medium-font-size: 2.2rem;
@@ -17,8 +17,6 @@ $xlarge-font-size: 7rem;
 
 $stripe-height: 7px;
 
-@media only screen and (max-width: 600px){
-  $small-font-size: 1.6rem; // you need to indent it to (re)set it just within this media-query
-      // now you copy all the css rules/properties that contain or are relative to $base_width e.g.
-      
-}
+$small-screen: 600px;
+$medium-screen: 900px;
+$large-screen: 1100px;

@@ -211,11 +211,9 @@ class App extends Component {
                                     </svg>
                                 }
 
-                                <div className="input-wrapper">
-                                    <label htmlFor="userName" className="visually-hidden"> Enter your name </label>
-                                    <input id="userName" className="input-field" type="text" value={this.state.userName} onChange={this.handleUserNameInput} placeholder="Enter your name" required />
-                                    <button onClick={this.handleSubmitScore}>Submit Score</button>
-                                </div>
+                                <label htmlFor="userName" className="visually-hidden"> Enter your name </label>
+                                <input id="userName" className="input-field" type="text" value={this.state.userName} onChange={this.handleUserNameInput} placeholder="Enter your name" required />
+                                <button onClick={this.handleSubmitScore}>Submit Score</button>
                                 <Leaderboard />
                             </div>
                             :

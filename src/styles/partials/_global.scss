@@ -46,7 +46,7 @@ h2{
 
 p{
   width: 100%;
-  margin: 10px auto;
+  margin: 1rem auto;
   color: lighten($primary-color,10);
   font-size: $medium-font-size;
 }
@@ -110,7 +110,7 @@ footer{
   z-index: 9;
   h2{
     text-decoration: underline;
-    margin: 20px 0px 10px 0px;
+    margin: 2rem 0 1rem 0;
     color: $primary-color;
   }
 }
@@ -138,7 +138,7 @@ footer{
   width: 80%;
   max-width: 400px;
   margin: 0 auto;
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
   transition: width 0.5s ease;
   @media screen and (max-width: $small-screen){
     width: 100%;

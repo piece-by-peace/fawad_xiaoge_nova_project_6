@@ -7,9 +7,9 @@ html{
 }
 
 body{
-  font-size: 1.6rem;
+  font-size: $small-font-size;
   text-align: center;
-  font-family: 'Crimson Text', serif;
+  font-family: $body-font-family;
   background-color: $background-color;
 }
 
@@ -49,6 +49,17 @@ p{
   margin: 10px auto;
   color: lighten($primary-color,10);
   font-size: $medium-font-size;
+}
+
+a{
+  text-decoration: none;
+}
+
+footer{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .entry{
@@ -144,6 +155,12 @@ p{
 .entries{
   display: inline-block;
   margin-top: 1.5rem;
+}
+.dev-name{
+  margin-right: 1rem;
+  font-family: $heading-font-family;
+  font-size: $small-font-size;
+  color: $primary-color;
 }
 
 svg {

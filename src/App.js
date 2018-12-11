@@ -7,6 +7,7 @@ import LandingPage from './LandingPage/LandingPage';
 import Leaderboard from './LandingPage/Leaderboard';
 import stockWords from './Questions/data';
 import { leaderboardDbRef } from './firebase';
+import Footer from './Footer';
 
 class App extends Component {
     constructor() {
@@ -188,9 +189,12 @@ class App extends Component {
         return (
             <div className="wrapper">
                 {this.state.userDifficulty === '' ? (
-                    <LandingPage
-                        handleOnClickButton={this.timerLevelStartGame}
-                    />
+                    <div>
+                        <LandingPage
+                            handleOnClickButton={this.timerLevelStartGame}
+                        />
+                        <Footer />
+                    </div>
                 ) : (
 
                         (this.state.currentGameTime === 0 && this.state.userDifficulty !== '') || (this.state.index > 9) ?
@@ -216,6 +220,7 @@ class App extends Component {
                                     <button onClick={this.handleSubmitScore}>Submit Score</button>
                                 </div>
                                 <Leaderboard />
+                                <Footer />
                             </div>
                             :
                             <div>
@@ -224,6 +229,7 @@ class App extends Component {
                                     data={this.state.questionSet[this.state.index]}
                                     updateScore={this.updateScore}
                                 />
+                                <Footer />
                             </div>
                     )}
 

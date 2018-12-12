@@ -27,7 +27,6 @@ class App extends Component {
 
     componentDidMount() {
         this.generateWordSet();
-        this.updateLeaderboard();
     }
 
     generateWordSet = () => {
@@ -85,21 +84,6 @@ class App extends Component {
             });
         });
     };
-
-    updateLeaderboard = () => {
-        // Get the top 10 entries, ordered by score
-        leaderboardDbRef
-            .orderByChild('score')
-            .limitToLast(10)
-            .on('value', (snapshot) => {
-                let leaderboard = [];
-                snapshot.forEach((child) => {
-                    leaderboard.unshift(child.val());
-                });
-
-                this.setState({ leaderboard: leaderboard });
-            });
-    }
 
     counter = null;
 
@@ -179,12 +163,9 @@ class App extends Component {
         })
             // for Try Again functionality
             .then(() => {
-                this.setState({ userDifficulty: '', index: 0, score: 0 });
+                this.setState({ userName: '', userDifficulty: '', index: 0, score: 0 });
                 this.generateWordSet();
             });
-        this.setState({
-            userName: ""
-        })
     };
 
 

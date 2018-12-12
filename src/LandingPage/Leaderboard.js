@@ -26,6 +26,12 @@ class Leaderboard extends Component {
             });
     }
 
+    componentWillUnmount() {
+        if (leaderboardDbRef) {
+            leaderboardDbRef.off();
+        }
+    }
+
     toggleLeaderboard = () => {
         this.setState((currentState) => {
             return { leaderboardShown: !currentState.leaderboardShown };
